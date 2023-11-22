@@ -5,8 +5,8 @@ To convert the PDF documents to pictures, then insert these pictures into an MS-
 --------
 # Features
 --------
--In a Windows environment, batch convert PDF files to images and store them in individual folders.
--To insert the images from each folder into a Word document in sequence.
+- In a Windows environment, batch convert PDF files to images and store them in individual folders.
+- To insert the images from each folder into a Word document in sequence.
 
 # Requirements
 ------------
@@ -15,10 +15,10 @@ To convert the PDF documents to pictures, then insert these pictures into an MS-
 
 # Installation
 ------------
-A.Install and deploy environment python 3.10
+## A.Install and deploy environment python 3.10
 
 
-B.
+## B.Config
 1. make Path --> C:\Program Files\OneClickPDF
 2. copy PdftoWord.py into oneClickPDF folder
 3. create a shortcut for 
@@ -30,9 +30,11 @@ B.
  
 6. save config
 
-C. Install necessary library files or packages
+## C. Install necessary library files or packages
+
 run :
-/  pip3 install -r requirements.txt  
+
+    pip3 install -r requirements.txt  
 
 
 # How to run it
