@@ -1,0 +1,5 @@
+PIL
+tqdm
+sys
+fitz
+docx
