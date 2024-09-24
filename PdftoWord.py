@@ -1,5 +1,5 @@
         # programmer :kargilik的猫头鹰
-        # 2023.08.09 in ZhongGuanCun,Beijing,China
+        # 2024.09.24 in ZhongGuanCun,Beijing,China
 import os
 from PIL import Image
 from tqdm import tqdm
@@ -10,8 +10,8 @@ from docx import Document
 from docx.shared import Inches
                                                                                           
 def process_pdf(pdf_path):
-    pdf_name = os.path.basename(pdf_path)  
-    pdf_name_without_ext = os.path.splitext(pdf_name)[0]
+    pdf_name = os.path.basename(pdf_path).strip()  # 清除文件名两端的空格
+    pdf_name_without_ext = os.path.splitext(pdf_name)[0].strip()  # 清除扩展名后的空格
 
     output_folder = os.path.join(os.path.dirname(pdf_path), pdf_name_without_ext)  
     os.makedirs(output_folder, exist_ok=True)
@@ -49,14 +49,18 @@ def insert_images_into_word(doc, folder):
 # Skip the first argument, which is the script itself
 folders = []
 for pdf_path in sys.argv[1:]:
-    print(f"Processing {pdf_path}...")
-    folders.append(process_pdf(pdf_path))
+    pdf_path = pdf_path.strip()  # 清除路径两端的空格
+    if os.path.exists(pdf_path):
+        print(f"Processing {pdf_path}...")
+        folders.append(process_pdf(pdf_path))
+    else:
+        print(f"File {pdf_path} not found.")
 
 doc = Document()                    # Generate Word document
 for folder in folders:
     print(f"Inserting images from {folder} into Word document...")
     insert_images_into_word(doc, folder)
-output_path = os.path.join(os.path.dirname(pdf_path), 'output.docx')
+output_path = os.path.join(os.path.dirname(folders[0]), 'output.docx')  # 修正输出路径
 doc.save(output_path)
 print("Word document saved as output.docx")
 
